@@ -6,7 +6,7 @@ import os
 from psychopy import core, visual, gui, monitors
 
 myDlg = gui.Dlg(title="Set parameters for *fixed* stimuli creation for the Sense Of Agency (SOA) task", screen=1)
-myDlg.addField("Which monitor?", choices=["eeg", "e330"])
+myDlg.addField("Which monitor?", choices=["e330"])
 myDlg.addField("line_width_prime?", choices=[2, 1,2,3,4])
 myDlg.addField("target_line_width_border?", choices=["same as line width prime", 1,2,3,4])
 myDlg.addField("prime_width (in cm)", 1.0)

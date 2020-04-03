@@ -46,7 +46,7 @@ myDlg.addField('Prime duration (in frames)?', 2)
 myDlg.addField('Mask duration (in frames)?', 12)
 myDlg.addField('Colour circle radius (in pixels)?', 24)
 myDlg.addField('Which screen? (1 for viewpixx, 0 for right hand side screen)', 1)
-myDlg.addField("Which monitor?", choices=["eeg", "e330"])
+myDlg.addField("Which monitor?", choices=["e330"])
 myDlg.addField("Which colour condition?", choices=["A", "B"])
 dlg_data = myDlg.show()
 if myDlg.OK:

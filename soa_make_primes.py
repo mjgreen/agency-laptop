@@ -3,7 +3,7 @@ import os
 from psychopy import visual, core, gui, monitors, event
 
 myDlg = gui.Dlg(title="Set prime parameters", screen=1)
-myDlg.addField("Which monitor?", choices=["eeg", "e330"])
+myDlg.addField("Which monitor?", choices=["e330"])
 myDlg.addField("line_width_prime", choices=[2, 1,2,3,4])
 
 while True:

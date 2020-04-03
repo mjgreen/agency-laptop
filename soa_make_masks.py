@@ -5,7 +5,7 @@ import pandas as pd
 from psychopy import core, visual, misc, monitors, gui
 
 myDlg = gui.Dlg(title="Set parameters for stimuli creation for the Sense Of Agency (SOA) task", screen=1)
-myDlg.addField("Which monitor?", choices=["eeg", "e330"])
+myDlg.addField("Which monitor?", choices=["e330"])
 myDlg.addField("line_width_prime?", choices=[2, 1,2,3,4])
 myDlg.addField("target_line_width_border?", choices=["same as line width prime", 1,2,3,4])
 myDlg.addField("prime_width (in cm)", 1.0)
@@ -53,21 +53,6 @@ if which_monitor == "e330":
     n_pixels_per_cm = float(xpx) / float(xcm)
     which_screen = 0
     win = visual.Window(fullscr=True, size=[xpx, ypx], units='pix', allowGUI=False, waitBlanking=True, color=[0, 0, 0], monitor=lenovo, screen=which_screen)
-    win.winHandle.minimize()
-    win.flip()  # redraw the (minimised) window
-if which_monitor == "eeg":
-    xpx = 1920
-    ypx = 1080
-    xcm = 53.5
-    screen_distance = 60
-    viewpixx = monitors.Monitor("eeg", width=xcm, distance=screen_distance)
-    viewpixx.saveMon()
-    aspect_ratio = float(xpx) / float(ypx)  # is 1.7777777777777777, 16:9
-    n_pixels_per_cm = float(xpx) / float(xcm)
-    which_screen = 1
-    win = visual.Window(fullscr=True, size=[xpx, ypx], units='pix', allowGUI=False, waitBlanking=True, color=[0, 0, 0], monitor=viewpixx, screen=which_screen)
-    win.winHandle.minimize()
-    win.flip()  # redraw the (minimised) window
 
 # parse the gui
 scale_multiplier = dlg_data[11]
@@ -185,7 +170,7 @@ def get_trial_structure():
 trial_dict = get_trial_structure()  # 1-indexed because a dict of dicts and 1 is the key not a row number (no row numbers in a dict of dicts)
 
 # if the masks were generated in the last 10 minutes then skip those masks
-criterion = 10  # minutes ago
+criterion = 1000  # minutes ago
 now = time.time()
 mask_time = 0.0
 starting_mask = 1
@@ -341,6 +326,7 @@ for n_masks in range(starting_mask, 1+512):
     mask_and_target.draw()
     win.getMovieFrame(buffer='back')
     win.saveMovieFrames(os.path.join("stimuli", which_monitor, "masks", mask_filename))
+    win.flip()  
     print("finished creating mask # {}".format(n_masks))
 
 for do_spreadsheet in range(1):
